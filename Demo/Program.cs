@@ -32,7 +32,9 @@ namespace Demo
 			Console.WriteLine($"{_10d2.Min} - {_10d2.Max}");
 			for (int i = 0; i < 5; i++)
 				Console.WriteLine(DiceSet.Roll(_10d2));
-			Console.WriteLine("\n");
+			Console.WriteLine("====================\n");
+
+			Console.WriteLine(DiceSet.Roll(3, 7));
 
 			Console.WriteLine("Press any key to exit");
 			Console.ReadKey();

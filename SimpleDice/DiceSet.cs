@@ -14,9 +14,9 @@ namespace SimpleDice
 		/// </summary>
 		public int Count { get; private set; }
 		/// <summary>
-		/// Number of sides of each dice in this dice set
+		/// Number of faces of each dice in this dice set
 		/// </summary>
-		public int Sides { get; private set; }
+		public int Faces { get; private set; }
 
 		/// <summary>
 		/// Minimum possible outcome
@@ -25,16 +25,16 @@ namespace SimpleDice
 		/// <summary>
 		/// Maximum possible outcome
 		/// </summary>
-		public int Max { get { return Count * Sides; } }
+		public int Max { get { return Count * Faces; } }
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="_count">Number of dices in this set. Must be 1 or greater</param>
-		/// <param name="_sides">Number of sides each dice have. Must be 2 or greater</param>
-		public DiceSet(int _count = 1, int _sides = 6)
+		/// <param name="faces">Number of faces each dice have. Must be 2 or greater</param>
+		public DiceSet(int _count = 1, int faces = 6)
 		{
-			ChangeSet(_count, _sides);
+			ChangeSet(_count, faces);
 			random = new Random();
 		}
 
@@ -42,26 +42,26 @@ namespace SimpleDice
 		/// Change count of dices in this set and number of their sides
 		/// </summary>
 		/// <param name="_count">Number of dices in this set. Must be 1 or greater</param>
-		/// <param name="_sides">Number of sides each dice have. Must be 2 or greater</param>
-		public void ChangeSet(int _count, int _sides)
+		/// <param name="_faces">Number of faces each dice have. Must be 2 or greater</param>
+		public void ChangeSet(int _count, int _faces)
 		{
 			if (_count < 1)
 				_count = 1;
-			if (_sides < 2)
-				_sides = 0;
+			if (_faces < 2)
+				_faces = 0;
 
 			Count = _count;
-			Sides = _sides;
+			Faces = _faces;
 		}
 
 		/// <summary>
 		/// Converts this dice set into its string representation for purposes like displaying in interface
 		/// </summary>
-		/// <param name="separator">Separator symbol or string between dice count and number of sides</param>
+		/// <param name="separator">Separator symbol or string between dice count and number of faces</param>
 		/// <returns>A string representation of this dice set</returns>
 		public string ToString(string separator = "d")
 		{
-			return $"{Count}{separator}{Sides}";
+			return $"{Count}{separator}{Faces}";
 		}
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace SimpleDice
 		/// <returns>An average result of rolling this dice set</returns>
 		public int Average(bool roundUp = false)
 		{
-			float average = ((float)(Sides + 1) / 2) * Count;
+			float average = ((float)(Faces + 1) / 2) * Count;
 			if (roundUp)
 				return (int)Math.Ceiling(average);
 			return (int)Math.Floor(average);
@@ -86,7 +86,7 @@ namespace SimpleDice
 			int result = 0;
 			for (int i = 0; i < Count; i++)
 			{
-				result+= random.Next(1, Sides + 1);
+				result+= random.Next(1, Faces + 1);
 			}
 			return result;
 		}
@@ -102,7 +102,7 @@ namespace SimpleDice
 			int result = 0;
 			for (int i =0; i < Count; i++)
 			{
-				int roll = random.Next(1, Sides + 1);
+				int roll = random.Next(1, Faces + 1);
 				result += roll;
 				rollsArray[i] = roll;
 			}
@@ -127,6 +127,31 @@ namespace SimpleDice
 		/// <returns>Result of a dice set roll</returns>
 		public static int Roll(DiceSet diceSet, out int[] rollsArray)
 		{
+			return diceSet.Roll(out rollsArray);
+		}
+
+		/// <summary>
+		/// Static method to roll a number of dices with seted number of faces
+		/// </summary>
+		/// <param name="_count">>Number of dices to roll. Must be 1 or greater</param>
+		/// <param name="_faces">Number of faces of each dice. Must be 2 or greater</param>
+		/// <returns>Result of a roll</returns>
+		public static int Roll(int _count, int _faces)
+		{
+			DiceSet diceSet = new DiceSet(_count, _faces);
+			return diceSet.Roll();
+		}
+
+		/// <summary>
+		/// Static method to roll a number of dices with seted number of faces and get each dice roll result
+		/// </summary>
+		/// <param name="_count">Number of dices to roll. Must be 1 or greater</param>
+		/// <param name="_faces">Number of faces of each dice. Must be 2 or greater</param>
+		/// <param name="rollsArray">Integer array which will contain individual roll results of each dice</param>
+		/// <returns>Result of a roll</returns>
+		public static int Roll(int _count, int _faces, out int[] rollsArray)
+		{
+			DiceSet diceSet = new DiceSet(_count, _faces);
 			return diceSet.Roll(out rollsArray);
 		}
 	}
