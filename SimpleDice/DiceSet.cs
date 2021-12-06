@@ -3,18 +3,18 @@
 namespace SimpleDice
 {
 	/// <summary>
-	/// A simple class to handle NdM sets of dices
+	/// A simple class to handle NdM sets of dice
 	/// </summary>
 	public class DiceSet
 	{
 		private Random random;
 
 		/// <summary>
-		/// Number of dices in this dice set
+		/// Number of dice in this dice set
 		/// </summary>
 		public int Count { get; private set; }
 		/// <summary>
-		/// Number of faces of each dice in this dice set
+		/// Number of faces of each die in this dice set
 		/// </summary>
 		public int Faces { get; private set; }
 
@@ -30,8 +30,8 @@ namespace SimpleDice
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="_count">Number of dices in this set. Must be 1 or greater</param>
-		/// <param name="faces">Number of faces each dice have. Must be 2 or greater</param>
+		/// <param name="_count">Number of dice in this set. Must be 1 or greater</param>
+		/// <param name="faces">Number of faces each die have. Must be 2 or greater</param>
 		public DiceSet(int _count = 1, int faces = 6)
 		{
 			ChangeSet(_count, faces);
@@ -39,10 +39,10 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Change count of dices in this set and number of their sides
+		/// Change count of dice in this set and number of their sides
 		/// </summary>
-		/// <param name="_count">Number of dices in this set. Must be 1 or greater</param>
-		/// <param name="_faces">Number of faces each dice have. Must be 2 or greater</param>
+		/// <param name="_count">Number of dice in this set. Must be 1 or greater</param>
+		/// <param name="_faces">Number of faces each die have. Must be 2 or greater</param>
 		public void ChangeSet(int _count, int _faces)
 		{
 			if (_count < 1)
@@ -65,7 +65,7 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Returns average result of rolling this dices, rounded down (default) or up if number is not integer
+		/// Returns average result of rolling this dice, rounded down (default) or up if result is not whole
 		/// </summary>
 		/// <param name="roundUp">Is result must be rounded up?</param>
 		/// <returns>An average result of rolling this dice set</returns>
@@ -78,7 +78,7 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Roll the dices
+		/// Roll the dice
 		/// </summary>
 		/// <returns>Result of a roll</returns>
 		public int Roll()
@@ -92,9 +92,9 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Roll the dices and get each dice roll result
+		/// Roll the dice and get each die roll result
 		/// </summary>
-		/// <param name="rollsArray">Integer array which will contain individual roll results of each dice</param>
+		/// <param name="rollsArray">Integer array which will contain individual roll results of each die</param>
 		/// <returns>Result of a roll</returns>
 		public int Roll(out int[] rollsArray)
 		{
@@ -110,31 +110,10 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Static method to roll any dice set
+		/// Static method to roll a number of dice with seted number of faces
 		/// </summary>
-		/// <param name="diceSet">A dice set to roll</param>
-		/// <returns>Result of a dice set roll</returns>
-		public static int Roll(DiceSet diceSet)
-		{
-			return diceSet.Roll();
-		}
-
-		/// <summary>
-		/// Static method to roll any dice set and get each dice roll result
-		/// </summary>
-		/// <param name="diceSet">A dice set to roll</param>
-		/// <param name="rollsArray">Integer array which will contain individual roll results of each dice</param>
-		/// <returns>Result of a dice set roll</returns>
-		public static int Roll(DiceSet diceSet, out int[] rollsArray)
-		{
-			return diceSet.Roll(out rollsArray);
-		}
-
-		/// <summary>
-		/// Static method to roll a number of dices with seted number of faces
-		/// </summary>
-		/// <param name="_count">>Number of dices to roll. Must be 1 or greater</param>
-		/// <param name="_faces">Number of faces of each dice. Must be 2 or greater</param>
+		/// <param name="_count">>Number of dice to roll. Must be 1 or greater</param>
+		/// <param name="_faces">Number of faces of each die. Must be 2 or greater</param>
 		/// <returns>Result of a roll</returns>
 		public static int Roll(int _count, int _faces)
 		{
@@ -143,11 +122,11 @@ namespace SimpleDice
 		}
 
 		/// <summary>
-		/// Static method to roll a number of dices with seted number of faces and get each dice roll result
+		/// Static method to roll a number of dice with seted number of faces and get each die roll result
 		/// </summary>
-		/// <param name="_count">Number of dices to roll. Must be 1 or greater</param>
-		/// <param name="_faces">Number of faces of each dice. Must be 2 or greater</param>
-		/// <param name="rollsArray">Integer array which will contain individual roll results of each dice</param>
+		/// <param name="_count">Number of dice to roll. Must be 1 or greater</param>
+		/// <param name="_faces">Number of faces of each die. Must be 2 or greater</param>
+		/// <param name="rollsArray">Integer array which will contain individual roll results of each die</param>
 		/// <returns>Result of a roll</returns>
 		public static int Roll(int _count, int _faces, out int[] rollsArray)
 		{
